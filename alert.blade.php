@@ -13,7 +13,7 @@
     };
 @endphp
 
-<div {{ $attributes->merge(['class' => "alert tui-alert $typeClass mb-2"]) }} role="alert">
+<div {{ $attributes->merge(['class' => "alert tui-alert $typeClass"]) }} role="alert">
 
     {{-- Contenedor del Icono --}}
     <div class="tui-icon shrink-0 h-5 w-5 mt-0.5">
