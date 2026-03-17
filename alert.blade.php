@@ -57,7 +57,7 @@
     </div>
 
     {{-- Contenido Principal --}}
-    <div class="flex-1 text-left">
+    <div class="flex-1 text-left relative top-0.75">
         @if ($title)
             <h3 class="text-sm font-medium">{{ $title }}</h3>
         @endif
