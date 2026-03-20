@@ -1,4 +1,4 @@
-<label class="swap swap-rotate grid place-items-center px-1 h-8.5 border border-transparent">
+<label class="swap swap-rotate grid place-items-center text-white h-10 btn btn-circle btn-ghost active:bg-transparent hover:bg-transparent border border-transparent">
 
     <!-- Este checkbox oculto controla el estado -->
     <input type="checkbox" class="theme-controller hidden p-2" value="tailwind-dark" />
