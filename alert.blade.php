@@ -5,16 +5,23 @@
 
 @php
     $typeClass = match ($type) {
-        'warning' => 'tui-warning',
-        'error' => 'tui-error',
-        'success' => 'tui-success',
-        'info' => 'tui-info',
-        default => 'tui-info',
+        'warning' => 'alert-warning',
+        'error'   => 'alert-error',
+        'success' => 'alert-success',
+        'info'    => 'alert-info',
+        default   => 'alert-info',
+    };
+
+    $iconColor = match ($type) {
+        'warning' => 'text-warning',
+        'error'   => 'text-error',
+        'success' => 'text-success',
+        'info'    => 'text-info',
+        default   => 'text-info',
     };
 @endphp
 
-<div {{ $attributes->merge(['class' => "alert tui-alert $typeClass"]) }} role="alert">
-
+<div {{ $attributes->merge(['class' => "alert grid! $typeClass"]) }} role="alert">
     {{-- Contenedor del Icono --}}
     <div class="tui-icon shrink-0 h-5 w-5 mt-0.5">
         @if (isset($icon))
@@ -55,13 +62,10 @@
             @endswitch
         @endif
     </div>
-
-    {{-- Contenido Principal --}}
     <div class="flex-1 text-left relative top-[2.6px]">
         @if ($title)
             <h3 class="text-sm font-medium">{{ $title }}</h3>
         @endif
-
         @if ($slot->isNotEmpty())
             <div class="{{ $title ? 'mt-1' : '' }} text-sm opacity-90">
                 {{ $slot }}
