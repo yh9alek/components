@@ -1,27 +1,34 @@
 @props([
-    'label'       => null,
-    'hint'        => null,
-    'errors'      => [],
-    'color'       => null,
-    'size'        => null,
-    'name'        => null,
-    'id'          => null,
-    'placeholder' => null,
-    'value'       => null,
-    'type'        => 'text',
-    'required'    => false,
-    'disabled'    => false,
-    'readonly'    => false,
-    'iconLeft'    => null,
-    'iconRight'   => null,
-    'colSpan'     => null,
+    'label'         => null,
+    'hint'          => null,
+    'errorMessages' => [],
+    'color'         => null,
+    'size'          => null,
+    'name'          => null,
+    'id'            => null,
+    'placeholder'   => null,
+    'value'         => null,
+    'type'          => 'text',
+    'required'      => false,
+    'disabled'      => false,
+    'readonly'      => false,
+    'iconLeft'      => null,
+    'iconRight'     => null,
+    'colSpan'       => null,
 ])
 
 @php
     $inputId    = $id ?? $name;
+    
+    $messages = !empty($errorMessages) 
+                ? $errorMessages
+                : [];
+
     $colorClass = $color ? "input-{$color}" : '';
     $sizeClass  = $size  ? "input-{$size}"  : '';
-    $errorClass = !empty($errors) ? 'input-error' : '';
+    
+    // 3. Evaluamos nuestra nueva variable $messages
+    $errorClass = !empty($messages) ? 'input-error' : '';
     
     $colSpanMap = [
         1  => 'sm:col-span-1',
@@ -59,8 +66,6 @@
         </legend>
     @endif
 
-    {{-- El div relative es el que contiene todo --}}
-    {{-- El input y los iconos son hermanos dentro de este div --}}
     <div class="relative w-full">
 
         <input
@@ -72,10 +77,9 @@
             @if ($required) required @endif
             @if ($disabled) disabled @endif
             @if ($readonly) readonly @endif
-            {{ $attributes->merge(['class' => "input w-full max-h-[34.5px] {$colorClass} {$sizeClass} {$errorClass} {$paddingLeft} {$paddingRight}"]) }}
+            {{ $attributes->merge(['class' => "input w-full max-h-[34.5px] border border-base-350 {$colorClass} {$sizeClass} {$errorClass} {$paddingLeft} {$paddingRight}"]) }}
         />
 
-        {{-- Iconos FUERA del input, posicionados sobre él --}}
         @if ($hasIconLeft)
             <span class="absolute inset-y-0 left-0.5 top-1 w-10 flex items-center justify-center text-base-content/40 pointer-events-none z-10">
                 @if (is_string($iconLeft))
@@ -98,12 +102,13 @@
 
     </div>
 
-    @if ($errors)
-        @foreach ($errors as $error)
-            <p class="absolute -bottom-[7px] label text-error">{{ $error }}</p>
+    {{-- 4. Iteramos sobre nuestra nueva variable $messages --}}
+    @if (!empty($messages))
+        @foreach ($messages as $error)
+            <p class="absolute -bottom-[2px] label text-error">{{ $error }}</p>
         @endforeach
     @elseif ($hint)
-        <p class="absolute -bottom-[7px] label">{{ $hint }}</p>
+        <p class="absolute -bottom-[2px] label">{{ $hint }}</p>
     @endif
 
 </fieldset>

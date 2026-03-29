@@ -8,7 +8,7 @@
     <div class="modal-box {{ $size }} p-0 mt-8 mb-8 rounded-lg overflow-hidden flex flex-col max-h-[calc(100dvh-4rem)]">
 
         {{-- ── HEADER ── --}}
-        <div class="shrink-0 flex items-center justify-between text-white px-5 py-3 bg-[#275DAE] dark:bg-[#0E1A31] border-b border-[#e9e9e9a6] dark:border-[#e9e9e90c]">
+        <div class="shrink-0 flex items-center justify-between text-white px-5 py-3 color-base border-b border-[#e9e9e9a6] dark:border-[#e9e9e90c]">
             <h3 class="font-medium text-xl">{{ $title }}</h3>
         </div>
 
