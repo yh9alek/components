@@ -1,7 +1,7 @@
 @props(['links' => []])
 
 <nav aria-label="breadcrumb" id="breadcrumb" {{ $attributes->merge(['class' => 'mb-15']) }}>
-    <div class="breadcrumbs text-sm bg-base-300 dark:bg-base-200 px-3 rounded-sm">
+    <div class="breadcrumbs text-sm bg-base-300 dark:bg-base-200 px-3 rounded-md">
         <ul>
             <!-- Elemento Home fijo -->
             <li>

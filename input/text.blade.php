@@ -14,6 +14,7 @@
     'readonly'    => false,
     'iconLeft'    => null,
     'iconRight'   => null,
+    'colSpan'     => null,
 ])
 
 @php
@@ -21,6 +22,23 @@
     $colorClass = $color ? "input-{$color}" : '';
     $sizeClass  = $size  ? "input-{$size}"  : '';
     $errorClass = !empty($errors) ? 'input-error' : '';
+    
+    $colSpanMap = [
+        1  => 'sm:col-span-1',
+        2  => 'sm:col-span-2',
+        3  => 'sm:col-span-3',
+        4  => 'sm:col-span-4',
+        5  => 'sm:col-span-5',
+        6  => 'sm:col-span-6',
+        7  => 'sm:col-span-7',
+        8  => 'sm:col-span-8',
+        9  => 'sm:col-span-9',
+        10 => 'sm:col-span-10',
+        11 => 'sm:col-span-11',
+        12 => 'sm:col-span-12',
+    ];
+
+    $colSpanClass = $colSpan ? 'col-span-full ' . ($colSpanMap[$colSpan] ?? '') : 'col-span-full';
 
     $hasIconLeft  = ($iconLeft && is_string($iconLeft) && trim($iconLeft) !== '')
                     || (isset($iconLeft) && $iconLeft instanceof \Illuminate\View\ComponentSlot && $iconLeft->isNotEmpty());
@@ -32,10 +50,10 @@
     $paddingRight = $hasIconRight ? 'pr-10' : '';
 @endphp
 
-<fieldset class="fieldset w-full h-22.5 relative">
+<fieldset class="fieldset w-full h-22.5 relative col-span-full md:{{ $colSpanClass }}">
 
     @if ($label)
-        <legend class="fieldset-legend">
+        <legend class="fieldset-legend text-[13px] font-light pb-1">
             {{ $label }}
             @if ($required) <span class="text-error">*</span> @endif
         </legend>
@@ -54,7 +72,7 @@
             @if ($required) required @endif
             @if ($disabled) disabled @endif
             @if ($readonly) readonly @endif
-            {{ $attributes->merge(['class' => "input w-full {$colorClass} {$sizeClass} {$errorClass} {$paddingLeft} {$paddingRight}"]) }}
+            {{ $attributes->merge(['class' => "input w-full max-h-[34.5px] {$colorClass} {$sizeClass} {$errorClass} {$paddingLeft} {$paddingRight}"]) }}
         />
 
         {{-- Iconos FUERA del input, posicionados sobre él --}}
@@ -82,10 +100,10 @@
 
     @if ($errors)
         @foreach ($errors as $error)
-            <p class="absolute -bottom-2.5 label text-error">{{ $error }}</p>
+            <p class="absolute -bottom-[7px] label text-error">{{ $error }}</p>
         @endforeach
     @elseif ($hint)
-        <p class="absolute -bottom-2.5 label">{{ $hint }}</p>
+        <p class="absolute -bottom-[7px] label">{{ $hint }}</p>
     @endif
 
 </fieldset>

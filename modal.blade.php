@@ -4,26 +4,26 @@
     'size'  => 'max-w-lg',
 ])
 
-<dialog id="{{ $id }}" class="modal shadow-sm">
-    <div class="modal-box {{ $size }} p-0 rounded-lg overflow-hidden">
+<dialog id="{{ $id }}" class="modal items-start shadow-sm">
+    <div class="modal-box {{ $size }} p-0 mt-8 mb-8 rounded-lg overflow-hidden flex flex-col max-h-[calc(100dvh-4rem)]">
 
         {{-- ── HEADER ── --}}
-        <div class="flex items-center justify-between text-white px-5 py-3 bg-[#275DAE] dark:bg-[#0E1A31] border-b border-[#e9e9e9a6] dark:border-[#e9e9e90c]">
-            <h3 class="font-medium text-base">{{ $title }}</h3>
+        <div class="shrink-0 flex items-center justify-between text-white px-5 py-3 bg-[#275DAE] dark:bg-[#0E1A31] border-b border-[#e9e9e9a6] dark:border-[#e9e9e90c]">
+            <h3 class="font-medium text-xl">{{ $title }}</h3>
         </div>
 
         {{-- ── BODY ── --}}
-        <div class="px-5 py-4 bg-base-100">
+        <div class="flex-1 overflow-y-auto px-5 py-4 bg-base-100">
             {{ $slot }}
         </div>
 
         {{-- ── FOOTER ── --}}
-        <div class="flex flex-wrap items-center justify-end gap-2 px-5 py-3 bg-base-100 border-t border-[#e9e9e9a6] dark:border-[#e9e9e90c]">
+        <div class="shrink-0 flex flex-wrap items-center justify-end gap-2 px-5 py-3 bg-base-100 border-t border-[#e9e9e9a6] dark:border-[#e9e9e90c]">
             {{ $footer ?? '' }}
             <form method="dialog">
                 <button class="btn">Cerrar</button>
             </form>
-            {{ $actions }}
+            {{ $actions ?? '' }}
         </div>
 
     </div>
