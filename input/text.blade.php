@@ -57,7 +57,7 @@
     $paddingRight = $hasIconRight ? 'pr-10' : '';
 @endphp
 
-<fieldset class="fieldset w-full h-22.5 relative col-span-full md:{{ $colSpanClass }}">
+<fieldset class="fieldset w-full h-21.5 relative col-span-full md:{{ $colSpanClass }}">
 
     @if ($label)
         <legend class="fieldset-legend text-[13px] font-light pb-1">
