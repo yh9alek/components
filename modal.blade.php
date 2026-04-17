@@ -9,7 +9,7 @@
 
         {{-- ── HEADER ── --}}
         <div class="shrink-0 flex items-center justify-between text-white px-5 py-3 color-base border-b border-[#e9e9e9a6] dark:border-[#e9e9e90c]">
-            <h3 class="font-medium text-xl">{{ $title }}</h3>
+            <h3 class="modal-title font-medium text-xl">{{ $title }}</h3>
         </div>
 
         {{-- ── BODY ── --}}
