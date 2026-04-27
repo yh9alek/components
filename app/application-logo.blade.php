@@ -1,1 +1,1 @@
-<img src="{{ asset('/tmaz-logo-150.png') }}" class="block mx-auto mt-2 mb-5">
+<img src="{{ asset('/tmaz-logo-150.png') }}" {{ $attributes->merge(['class']) }}>

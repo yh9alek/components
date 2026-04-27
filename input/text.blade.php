@@ -31,21 +31,21 @@
     $errorClass = !empty($messages) ? 'input-error' : '';
     
     $colSpanMap = [
-        1  => 'sm:col-span-1',
-        2  => 'sm:col-span-2',
-        3  => 'sm:col-span-3',
-        4  => 'sm:col-span-4',
-        5  => 'sm:col-span-5',
-        6  => 'sm:col-span-6',
-        7  => 'sm:col-span-7',
-        8  => 'sm:col-span-8',
-        9  => 'sm:col-span-9',
-        10 => 'sm:col-span-10',
-        11 => 'sm:col-span-11',
-        12 => 'sm:col-span-12',
+        1  => 'col-span-full sm:col-span-1',
+        2  => 'col-span-full sm:col-span-2',
+        3  => 'col-span-full sm:col-span-3',
+        4  => 'col-span-full sm:col-span-4',
+        5  => 'col-span-full sm:col-span-5',
+        6  => 'col-span-full sm:col-span-6',
+        7  => 'col-span-full sm:col-span-7',
+        8  => 'col-span-full sm:col-span-8',
+        9  => 'col-span-full sm:col-span-9',
+        10 => 'col-span-full sm:col-span-10',
+        11 => 'col-span-full sm:col-span-11',
+        12 => 'col-span-full sm:col-span-12',
     ];
 
-    $colSpanClass = $colSpan ? 'col-span-full ' . ($colSpanMap[$colSpan] ?? '') : 'col-span-full';
+    $colSpanClass = $colSpanMap[$colSpan] ?? 'col-span-full';
 
     $hasIconLeft  = ($iconLeft && is_string($iconLeft) && trim($iconLeft) !== '')
                     || (isset($iconLeft) && $iconLeft instanceof \Illuminate\View\ComponentSlot && $iconLeft->isNotEmpty());
@@ -57,7 +57,7 @@
     $paddingRight = $hasIconRight ? 'pr-10' : '';
 @endphp
 
-<fieldset class="fieldset w-full h-21.5 relative col-span-full md:{{ $colSpanClass }}">
+<fieldset class="fieldset w-full h-21.5 relative min-w-0 {{ $colSpanClass }}">
 
     @if ($label)
         <legend class="fieldset-legend text-[13px] font-light pb-1">
@@ -77,7 +77,7 @@
             @if ($required) required @endif
             @if ($disabled) disabled @endif
             @if ($readonly) readonly @endif
-            {{ $attributes->merge(['class' => "input w-full max-h-[34.5px] border border-base-350 {$colorClass} {$sizeClass} {$errorClass} {$paddingLeft} {$paddingRight}"]) }}
+            {{ $attributes->merge(['class' => "input w-full min-w-0 max-h-[34.5px] border border-base-350 {$colorClass} {$sizeClass} {$errorClass} {$paddingLeft} {$paddingRight}"]) }}
         />
 
         @if ($hasIconLeft)
@@ -105,10 +105,10 @@
     {{-- 4. Iteramos sobre nuestra nueva variable $messages --}}
     @if (!empty($messages))
         @foreach ($messages as $error)
-            <p class="absolute -bottom-[2px] label text-error">{{ $error }}</p>
+            <p class="absolute 551:-bottom-0.5! -bottom-2! label text-error">{{ $error }}</p>
         @endforeach
     @elseif ($hint)
-        <p class="absolute -bottom-[2px] label">{{ $hint }}</p>
+        <p class="absolute 551:-bottom-0.5! -bottom-2! label">{{ $hint }}</p>
     @endif
 
 </fieldset>

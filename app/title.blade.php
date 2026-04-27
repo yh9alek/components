@@ -1,0 +1,1 @@
+<h1 class="mb-2 text-[35px] font-bold max-w-75 md:max-w-full">{{ $slot }}</h1>
